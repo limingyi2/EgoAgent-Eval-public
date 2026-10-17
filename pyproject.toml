@@ -1,0 +1,28 @@
+[build-system]
+requires = ["setuptools>=68"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "egoagent-eval"
+version = "0.1.0"
+description = "Evaluate active video-observation agents against fixed-frame direct VLMs."
+readme = "README.md"
+requires-python = ">=3.11"
+license = { text = "MIT" }
+authors = [{ name = "EgoAgent-Eval contributors" }]
+dependencies = ["httpx>=0.27,<1", "opencv-python>=4.8,<5", "pydantic>=2.7,<3", "python-dotenv>=1,<2"]
+
+[project.scripts]
+egoagent-eval = "egoagent_eval.cli:main"
+
+[project.optional-dependencies]
+dev = ["pytest>=8,<9"]
+dataset = ["jsonschema>=4.18,<5", "imageio-ffmpeg>=0.6,<1"]
+analysis = ["matplotlib>=3.8,<4"]
+
+[tool.setuptools.packages.find]
+include = ["egoagent_eval*"]
+
+[tool.pytest.ini_options]
+testpaths = ["tests"]
+markers = ["real_api: explicitly opted-in real MiMo requests (costs tokens, never mocked)"]

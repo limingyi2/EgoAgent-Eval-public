@@ -1,0 +1,2 @@
+# Only analysis/chart generation needs matplotlib; execution/scoring are stdlib.
+matplotlib>=3.8,<4
